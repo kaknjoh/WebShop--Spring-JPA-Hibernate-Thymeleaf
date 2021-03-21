@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Prikaz proizvoda</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/scss}" />
+
+
+    <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+
+<style>
+    a{
+        text-decoration:none !important;
+    },
+
+    .img-wh{
+    widht:225px;
+    height:225px;
+    }
+</style>
+
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">WebShop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active"  sec:authorize="isAuthenticated()">
+                    <a class="nav-link" th:href="@{/addproduct}">Dodaj proizvod <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/#categories}">Kategorije</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " th:href="@{/}">Home</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+
+<div class="album py-5 bg-light m-5">
+<div class="container">
+    <p class="text-dark" th:text="${message}"></p>
+    <div class="row"  >
+
+        <div class="col-md-4" th:each="product: ${products}">
+            <div class="card mb-4 box-shadow">
+                <img class="card-img-top " th:src="*{'data:'+{product.fileType}+';base64,'+{product.data}}" style="{width:200px;height:200px;}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${product.naziv}"></h5>
+                    <p class="card-text" th:text="${product.opis}"></p>
+                    <span class="badge badge-primary mr-auto mb-3" th:text="${product.cijena + ' KM'} " ></span>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <button type="button" class="btn  btn-outline-primary"><a  th:href="@{/product/details/{id}(id=${product.id})}" >Pogledaj detalje</a></button>
+                            <a    sec:authorize="isAuthenticated()" th:href="@{/edit/{productid}(productid=${product.id})}"><button class="btn  btn-outline-primary" >Edit</button></a>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

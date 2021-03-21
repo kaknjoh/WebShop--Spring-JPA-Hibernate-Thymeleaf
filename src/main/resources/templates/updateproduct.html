@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Update</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/scss}" />
+
+
+    <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+
+    <style>
+        .center_div{
+    margin: 0 auto;
+    width:80%; /* value of your choice which suits your alignment */
+}
+    </style>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">WebShop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active" sec:authorize="isAuthenticated()">
+                    <a class="nav-link" th:href="@{/addproduct}">Dodaj proizvod <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/#categories}">Kategorije</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " th:href="@{/}">Home</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<div class="container center_div mt-5">
+    <h2>Update proizvoda</h2>
+
+    <form th:action="@{/update/{productid}(productid=${product.id})}" method="post" th:object="${product}" class="needs-validation" novalidate  enctype="multipart/form-data">
+        <input type="hidden" th:value="*{id}" th:field="*{id}">
+
+        <div class="form-group">
+            <label for="naziv">Naziv proizvoda:</label>
+            <input type="text" class="form-control" id="naziv"  th:field="*{naziv}" >
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+
+        <div class="form-group">
+            <label for="opis">Opis proizvoda:</label>
+            <input type="text" class="form-control" id="opis"   th:field="*{opis}" >
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+        <div class="form-group">
+            <label for="boja">Boja:</label>
+            <input type="text"  class="form-control" id="boja" placeholder="Unesite boju" th:field="*{boja}" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+        <div class="form-group">
+            <label for="cijena">Cijena:</label>
+            <input type="text" class="form-control"  id="cijena" placeholder="Unesite cijenu" th:field="*{cijena}" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+
+        <div class="form-group">
+            <label for="rok">Unesite model:</label>
+            <input type="text" class="form-control" id="rok"  placeholder="Unesite model:" th:field="*{model}" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="kat">Izaberite kategoriju</label>
+            <select  class="form-control" id="kat"  required>
+
+                <option  th:each="kategorija : ${categories}" th:value="${kategorija.id}" th:text="${kategorija.categoryName}"></option>
+
+            </select>
+
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+
+        </div>
+
+        <div  class="form-group">
+            <label class="form-label" for="customFile">Unesite fotografiju proizvoda</label>
+            <input type="file"  name ="file" class="form-control" id="customFile"  required/>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<script>
+// Disable form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Get the forms we want to add validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+
+
+
+
+
+</body>
+</html>

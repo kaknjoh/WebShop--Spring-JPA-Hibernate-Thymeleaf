@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--Bootstrap CSS-->
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/scss}" />
+
+
+    <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+
+
+
+</head>
+
+
+<body class="text-center">
+<header th:insert="navbar.html :: navbar">
+</header>
+
+<main role="main">
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="first-slide" src="https://images.unsplash.com/photo-1526745925052-dd824d27b9ab?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="First slide">
+                <div class="container">
+                    <div class="carousel-caption text-center">
+                        <h1>Dobro došli</h1>
+                        <p>U ponudi Vam nudimo veliki izbor obuće za svaku priliku. Pogledajte našu ponudu i uvjerite se.</p>
+                        <p><a class="btn btn-lg btn-primary" th:href="@{/products}" role="button">Pogledajte ponudu</a></p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+
+    </div>
+
+
+    <div class="container marketing " >
+
+        <!-- Three columns of text below the carousel -->
+        <div class="row m-5" id="categories">
+            <div class="col-lg-4">
+                <img class="rounded-circle" src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" alt="Generic placeholder image" width="140" height="140">
+                <h2>Patike</h2>
+                <p> Budite u korak sa vremenom. U ponudi Vam nudimo veliki izbor patika. U ponudi se nalaze patike za raznosvrne svrhe. Ukoliko trebate patike za trčanje, teretanu, izlazak na pravom mjestu. Pogledajte izbor i uvjerite se. </p>
+                <p><a class="btn btn-secondary" href="#" th:href="@{/products/1}" role="button">Vidi više &raquo;</a></p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <img class="rounded-circle" src="https://images.unsplash.com/photo-1599012307605-23a0ebe4d321?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Generic placeholder image" width="140" height="140">
+                <h2>Cipele</h2>
+                <p>Poslovan ste čovjek i želite cipele koje će najbolje da pristaju Vašem outfitu. Na pravom ste mjestu. Pogledajte ponudu koju smo pripremili za Vas i počastite sebe novim cipelama. </p>
+                <p><a class="btn btn-secondary" href="#" th:href="@{products/2}" role="button">Vidi više &raquo;</a></p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <img class="rounded-circle" src="https://cdn.pixabay.com/photo/2016/03/27/22/05/businessman-1284463_960_720.jpg" alt="Generic placeholder image" width="140" height="140">
+                <h2>Čizme</h2>
+                <p>Izaberite udobne, elegante i lijepe čizme koje će Vam pružiti ugođaj u hladnim zimskim danima i apsolutno se uklopiti u outfit koji ne želite pokvariti. Za Vas smo pripremili novu kolekciju čizama. Pogledajte i uvjerite se.</p>
+                <p><a class="btn btn-secondary" href="#" th:href="@{products/3}" role="button">Vidi više &raquo;</a></p>
+            </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+
+
+        <!-- START THE FEATURETTES -->
+    <!--
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
+                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            </div>
+            <div class="col-md-5">
+                <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
+                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            </div>
+            <div class="col-md-5">
+                <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+
+!-->
+    </div><!-- /.container -->
+
+
+    <!-- FOOTER -->
+    <footer class="container">
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>&copy; Harun WebShop &middot; </p>
+    </footer>
+</main>
+
+
+<script th:src="@{webjars/jquery/3.4.1/jquery.js}"></script>
+<script th:src="@{webjars/jquery/3.4.1/jquery.slim.min.js}"></script>
+<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+
+</body>
+
+</html>

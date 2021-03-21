@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin set role</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/scss}" />
+
+
+    <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<h1 class="text-center">Change user role</h1>
+<form class="center"  th:action="@{/setrole}" method="post" th:object="${setUserRoleDTO}" >
+
+    <div class="form-group" >
+        <label for="users">Izaberite korisnika:</label>
+        <select class="form-control" id="users" th:field="*{userID}">
+            <option  th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
+        </select>
+        <div th:if="${#fields.hasErrors('userID')}" th:errors="*{userID}"></div>
+    </div>
+    <div class="form-group">
+        <label for="chooserole">Example select</label>
+        <select class="form-control" id="chooserole" th:field="*{roleName}">
+            <option th:value="USER" th:text="USER"></option>
+            <option th:value="EDITOR" th:text="EDITOR"></option>
+            <option th:value="ADMIN" th:text="ADMIN"></option>
+        </select>
+
+        <div th:if="${#fields.hasErrors('roleName')}" th:errors="*{roleName}"></div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+</body>
+</html>
